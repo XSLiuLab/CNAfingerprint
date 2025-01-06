@@ -1,0 +1,20 @@
+Package: CNAfingerprint
+Title: What the Package Does (One Line, Title Case)
+Version: 0.1
+Authors@R: c(
+    person("Jy", "Wang", ,"wangjy10@shanghaitech.edu.cn", role = c("aut", "cre")),
+    person("Zy", "Tao", ,"taozy@shanghaitech.edu.cn", role = c("aut")),
+    person("Xue-Song", "Liu", role = c("aut", "ctb"),
+           comment = c(ORCID = "0000-0002-7736-0077"))
+           )
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    dplyr,
+    sigminer,
+    stats,
+    xgboost
