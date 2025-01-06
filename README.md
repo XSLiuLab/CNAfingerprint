@@ -13,7 +13,7 @@ sigminer;
 
 xgboost;
 
-carte.
+caret.
 
 
 ```r
@@ -22,7 +22,7 @@ devtools::install_github("XSLiuLab/CNAfingerprint")
 library(CNAfingerprint)
 ```
 
-##Usegae
+## Usegae
 
 
 ```r
@@ -41,9 +41,9 @@ score <- CNAfingerprint(features,target="Oxa")
 
 ### note
 
-1,Be careful about sample ploidy selection.
+1, Be careful about sample ploidy selection.
 
-2,Hg38 is the only supported version of the genome, you can convert hg19 to hg38
+2, Hg38 is the only supported version of the genome, you can convert hg19 to hg38
 with the following methods:
 
 ```r
@@ -79,3 +79,4 @@ CNAfingerprint was developed by Ziyu Tao and Jinyu Wang. Please contact Jinyu Wa
 Cancer Biology Group @ShanghaiTech
 
 Research group led by Xue-Song Liu in ShanghaiTech University
+
