@@ -2,18 +2,23 @@
 
 CNAfingerprint, a tumor genomic DNA copy number alteration (CNA) based tool for predicting oxaliplatin-based chemotherapy clinical response.
 
-## Installation 
+## Installation
+
 Requirements:
 
-R (>= 3.5.0);
+  R (>= 3.5.0);
+  
+  dplyr;
+  
+  sigminer;
+  
+  caret.
 
-dplyr;
+Depends:
 
-sigminer;
-
-xgboost;
-
-caret.
+  mlr3verse;
+  
+  xgboost(v 1.7.8.1)
 
 
 ```r
