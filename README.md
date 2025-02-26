@@ -22,20 +22,14 @@ devtools::install_github("XSLiuLab/CNAfingerprint")
 library(CNAfingerprint)
 ```
 
-## Usegae
+## Usegae`
 
 
 ```r
 
 exampleSeg <- readRDS(system.file("extdata", "exampleSeg.rds",package = "CNAfingerprint", mustWork = TRUE))
 features <- CNF_call(exampleSeg,hg="hg38")
-
-# 
-features$AFP=c(5.6,18)
-features$`CA19-9` = c(5.6,19)
-
-
-score <- CNAfingerprint(features,target="Oxa")
+score <- CNAfingerprint(features,target="OXA")
 
 ```
 

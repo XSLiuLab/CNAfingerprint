@@ -4,7 +4,7 @@
 \alias{CNAfingerprint}
 \title{CNAfingerprint prediction function}
 \usage{
-CNAfingerprint(cnf, target = "Oxa")
+CNAfingerprint(cnf, target = "OXA")
 }
 \arguments{
 \item{cnf}{CNA features}
@@ -20,8 +20,6 @@ CNAfingerprint prediction function
 \examples{
 \donttest{
 features <- readRDS(system.file("extdata", "examplefeatures.rds",package = "CNAfingerprint", mustWork = TRUE))
-features$AFP=c(5.6,18)
-features$`CA19-9` = c(5.6,19)
 score <- CNAfingerprint(features,target="Oxa")
 }
 }

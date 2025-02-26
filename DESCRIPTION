@@ -1,6 +1,6 @@
 Package: CNAfingerprint
 Title: What the Package Does (One Line, Title Case)
-Version: 0.1
+Version: 0.9
 Authors@R: c(
     person("Jy", "Wang", ,"wangjy10@shanghaitech.edu.cn", role = c("aut", "cre")),
     person("Zy", "Tao", ,"taozy@shanghaitech.edu.cn", role = c("aut")),
@@ -17,4 +17,6 @@ Imports:
     dplyr,
     sigminer,
     stats,
-    xgboost
+    xgboost,
+Depends:
+    mlr3verse
