@@ -51,10 +51,31 @@ CNAfingerprint <- function(cnf,target="OXA"){
     valdata$CNAfingerprint <- pred$prob[,1]
     valdata <- valdata %>% dplyr::select(all_of(c("sample","CNAfingerprint")))
 
+  }else if(target="BCG"){
+    cat("You are running CNAfingerprint to predict clinical response of BCG perfusion therapy for NMIBC")
+
+    library(mlr3verse)
+
+    path <- system.file("extdata", "bcg_model.rds", package = "CNAfingerprint", mustWork = TRUE)
+    xgboostle <- readRDS(path)
+
+    target_cnf <-readRDS(system.file("extdata", "bcg_features.rds", package = "CNAfingerprint", mustWork = TRUE))
+
+    valdata <- cnf %>% as.data.frame()
+    colnames(valdata)[2:ncol(valdata)] <-paste0("feature",2:ncol(valdata))
+
+    valdata$lable <- sample(c(0, 1), size = nrow(valdata), replace = TRUE)
+    valdata$lable <- factor(valdata$lable,levels = c(0,1))
+    task_val <- as_task_classif(valdata[,2:ncol(valdata)], target = "lable",positive = '1')
+
+    set.seed(2025)
+    pred <- xgboostle$predict(task_val$select(target_cnf))
+    valdata$CNAfingerprint <- pred$prob[,1]
+    valdata <- valdata %>% dplyr::select(all_of(c("sample","CNAfingerprint")))
   }else{
     message("Currently, CNAfingerprint is only used to predict response to oxaliplatin chemotherapy")
     message("Stay for other applications!")
-    stop("please setting target='Oxa'")
+    stop("please setting target='OXA' or target='BCG'")
   }
 
   return(valdata)

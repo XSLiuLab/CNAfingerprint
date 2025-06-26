@@ -1,6 +1,6 @@
 Package: CNAfingerprint
 Title: What the Package Does (One Line, Title Case)
-Version: 0.9
+Version: 0.95
 Authors@R: c(
     person("Jy", "Wang", ,"wangjy10@shanghaitech.edu.cn", role = c("aut", "cre")),
     person("Zy", "Tao", ,"taozy@shanghaitech.edu.cn", role = c("aut")),
