@@ -17,6 +17,8 @@
 #' score <- CNAfingerprint(features,target="Oxa")
 #' }
 CNAfingerprint <- function(cnf,target="OXA"){
+  library(mlr3verse)
+  library(dplyr)
 
   if(target=="OXA"){
     cat("You are running CNAfingerprint to predict Oxaliplatin-based response for mCRCs")
@@ -51,7 +53,7 @@ CNAfingerprint <- function(cnf,target="OXA"){
     valdata$CNAfingerprint <- pred$prob[,1]
     valdata <- valdata %>% dplyr::select(all_of(c("sample","CNAfingerprint")))
 
-  }else if(target="BCG"){
+  }else if(target=="BCG"){
     cat("You are running CNAfingerprint to predict clinical response of BCG perfusion therapy for NMIBC")
 
     library(mlr3verse)
@@ -72,6 +74,7 @@ CNAfingerprint <- function(cnf,target="OXA"){
     pred <- xgboostle$predict(task_val$select(target_cnf))
     valdata$CNAfingerprint <- pred$prob[,1]
     valdata <- valdata %>% dplyr::select(all_of(c("sample","CNAfingerprint")))
+
   }else{
     message("Currently, CNAfingerprint is only used to predict response to oxaliplatin chemotherapy")
     message("Stay for other applications!")

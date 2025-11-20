@@ -21,7 +21,9 @@ As of today, CNAfingerprint can be implemented as follows:
 we also developed a pan cancer homologous recombination deficiency (HRD) predictor, find it [here](https://github.com/XSLiuLab/HRDCNA)!
 
 
-## Installation 
+## Getting started
+
+---
 
 Requirements:
 
@@ -32,6 +34,8 @@ dplyr;
 sigminer;
 
 xgboost;
+
+data.table (>= 1.15.0)
 
 mlr3
 
@@ -44,24 +48,74 @@ devtools::install_github("XSLiuLab/CNAfingerprint")
 library(CNAfingerprint)
 ```
 
-##Usegae
+## 
 
+### Input format
+
+The input requires absolute copy number profile with following information: chromosome, start, end,segVel, sample ; 
+
+The input data can be result from many software (ABSOLUTE, Sequenza, FACETS, CNVkit ...).
 
 ```r
-
 exampleSeg <- readRDS(system.file("extdata", "exampleSeg.rds",package = "CNAfingerprint", mustWork = TRUE))
-features <- CNF_call(exampleSeg,hg="hg38")
+head(exampleSeg)
 
+#   chromosome    start       end segVal sample
+# 1       chr1   900001   9500000      5 sample
+# 2       chr1  9600001 248900000      6 sample
+# 4      chr11   200001  18400000      7 sample
+# 6      chr12   100001  41900000      6 sample
+# 7      chr12 41900001  43100000      5 sample
+# 8      chr12 43100001 133275309      6 sample
+
+```
+
+### Extracting CNA features
+```r
+features <- CNF_call(exampleSeg,hg="hg38")
+head(features)[1:2,1:4]
+
+#    sample n_of_seg n_of_cnv n_of_amp
+# 1:  sample       51       51       51
+# 2: sample2       52       52       51
+```
+
+### Prediction
+
+Once we have the CNA features and their counts, we can use it for predicting your target.
+
+Predict the clinical response of Oxaliplatin-based chemotherapy in mCRC.
+```r
 # clinical response of Oxaliplatin-based chemotherapy in mCRC
 
 score <- CNAfingerprint(features,target="OXA")
+head(score)
 
+#  sample CNAfingerprint
+# 1  sample     0.07154381
+# 2 sample2     0.06783023
+
+```
+when CNAfingerprint_mCRC > 0.58, we consider that the patient may benefit from oxaliplatin-based chemotherapy.
+
+---
+
+Predict the clinical response of bacillus Calmette-Guérin (BCG) perfusion therapy in NMIBC.
+
+
+```r
 # clinical response of Oxaliplatin-based chemotherapy in NMIBC
 
 score <- CNAfingerprint(features,target="BCG")
+head(score)
 
-
+#    sample CNAfingerprint
+# 1  sample      0.2906596
+# 2 sample2      0.5066754
 ```
+when CNAfingerprint > 0.38, we consider that the patient may experience recurrence after BCG treatment.
+
+
 
 ### note
 
