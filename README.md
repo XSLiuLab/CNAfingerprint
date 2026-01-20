@@ -16,7 +16,9 @@ As of today, CNAfingerprint can be implemented as follows:
 
 2, target="BCG", clinical response of bacillus Calmette-Guérin (BCG) perfusion therapy in non-muscle invasive bladder cancer (NMIBC).
 
-3. ...
+3. target="BCR", biochemical recurrence (BCR) risk in prostate cancer.
+
+4. Waiting for collaborators!
 
 we also developed a pan cancer homologous recombination deficiency (HRD) predictor, find it [here](https://github.com/XSLiuLab/HRDCNA)!
 
@@ -104,7 +106,7 @@ Predict the clinical response of bacillus Calmette-Guérin (BCG) perfusion thera
 
 
 ```r
-# clinical response of Oxaliplatin-based chemotherapy in NMIBC
+# clinical response of bacillus Calmette-Guérin (BCG) perfusion therapy in NMIBC.
 
 score <- CNAfingerprint(features,target="BCG")
 head(score)
@@ -114,6 +116,26 @@ head(score)
 # 2 sample2      0.5066754
 ```
 when CNAfingerprint > 0.38, we consider that the patient may experience recurrence after BCG treatment.
+
+---
+
+Predict the biochemical recurrence (BCR) risk in prostate cancer.
+
+
+```r
+# biochemical recurrence (BCR) risk in prostate cancer.
+
+score <- CNAfingerprint(features,target="BCR")
+head(score)
+
+
+#  sample  CNAfingerprint_crank SurProb12M SurProb24M SurProb36M SurProb48M SurProb60M SurProb120M
+# 1  sample 16.92144  0.9052863  0.8540905   0.817625  0.7841122  0.7541919   0.6862483
+# 2 sample2 16.92144  0.9052863  0.8540905   0.817625  0.7841122  0.7541919   0.686248
+```
+when CNAfingerprint > 17.5, we consider the patient as high BCR risk. 
+
+"SurProb12M" means the probability of being BCR-free at 12 months (As of now, please pay more attention to the crank value.).
 
 
 
@@ -155,9 +177,11 @@ Jy Wang. et.al. Copy number alteration fingerprint predicts the clinical respons
 
 Tt Cai. et.al. Copy number alteration feature predicts the clinical response of BCG perfusion therapy in non-muscle invasive bladder cancer. [Under review]
 
+Jy Wang. et.al. Copy number alteration feature predicts the biochemical recurrence risk in prostate cancer. [Under review]
+
 ## Contributors
 
-CNAfingerprint was developed by Zy Tao, Jy Shen and Jy Wang. Please contact Jy Wang: wangjy10@shanghaitech.edu.cn for any questions or suggestions. Thank you for your use and feedback.
+CNAfingerprint was developed by Zy Tao, Jy Shen and Jy Wang. Please contact professor Xuesong Liu: liuxs@shanghaitech.edu.cn for any questions or suggestions. Thank you for your use and feedback.
 
 ---
 
